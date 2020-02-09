@@ -11,6 +11,9 @@ namespace BeFaster.App.Solutions.CHK
         public static int ComputePrice(string skus)
         {
             var items = GetListFromBasket(skus);
+
+            ApplyPromotions(items);
+
             int total = 0;
 
             foreach (var item in items)
@@ -31,6 +34,10 @@ namespace BeFaster.App.Solutions.CHK
 
                     case "D":
                         total += item.Value * 15;
+                        break;
+
+                    case "E":
+                        total += item.Value * 40;
                         break;
 
                     default:
@@ -82,11 +89,15 @@ namespace BeFaster.App.Solutions.CHK
             return dict;
         }
 
-        private static void pplyPromotions(IDictionary<string, int> basket)
+        private static void ApplyPromotions(IDictionary<string, int> basket)
         {
-            if (basket.ContainsKey("E") && basket.ContainsKey("B")))
+            if (basket.ContainsKey("E") && basket.ContainsKey("B"))
+            {
                 basket["B"] = basket["B"] - basket["E"] % 2;
 
+                if (basket["B"] < 0)
+                    basket["B"] = 0;
+            }
         }
     }
 }
