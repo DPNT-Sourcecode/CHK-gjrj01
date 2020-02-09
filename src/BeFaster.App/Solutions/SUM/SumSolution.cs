@@ -11,8 +11,9 @@ namespace BeFaster.App.Solutions.SUM
                 return -1;
             }
 
-            throw new SolutionNotImplementedException();
+            return x + y;
         }
     }
 }
+
 

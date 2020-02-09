@@ -11,6 +11,8 @@ namespace BeFaster.App.Tests.Solutions.SUM
         [TestCase(-1, 5)]
         [TestCase(0, -7)]
         [TestCase(-7, 0)]
+        [TestCase(101, 1)]
+        [TestCase(1, 101)]
         public void ShouldReturnMinus1_When_InvalidInput(int x, int y)
         {
             // When
@@ -20,13 +22,20 @@ namespace BeFaster.App.Tests.Solutions.SUM
             Assert.AreEqual(-1, result);
         }
 
-
         [TestCase(1, 1, ExpectedResult = 2)]
+        [TestCase(0, 1, ExpectedResult = 1)]
+        [TestCase(1, 0, ExpectedResult = 1)]
+        [TestCase(100, 100, ExpectedResult = 200)]
         public int ComputeSum_WhenInputIsValid(int x, int y)
         {
-            return SumSolution.Sum(x, y);
+            //When
+            var result = SumSolution.Sum(x, y);
+
+            // Then
+            return result;
         }
     }
 }
+
 
 
