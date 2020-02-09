@@ -81,6 +81,9 @@ namespace BeFaster.App.Solutions.CHK
 
                                     total += price;
                                 }
+
+                                if (basket[item.Key] > 0)
+                                    total += basket[item.Key] * pricing.Price;
                             }
 
                             else
@@ -175,4 +178,3 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
-

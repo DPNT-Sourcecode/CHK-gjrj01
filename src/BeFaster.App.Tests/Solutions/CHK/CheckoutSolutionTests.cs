@@ -63,13 +63,13 @@ namespace BeFaster.App.Tests.Solutions.CHK
             return result;
         }
 
-        //[TestCase("EEBBB", ExpectedResult = 125)]
-        //[TestCase("EEEEBBBB", ExpectedResult = 205)]
-        //[TestCase("EEEEBBBB", ExpectedResult = 205)]
-        //[TestCase("STX", ExpectedResult = 45)]
-        //[TestCase("STXSTX", ExpectedResult = 90)]
-        //[TestCase("STXSTXT", ExpectedResult = 107)]
-        //[TestCase("STXSTXTX", ExpectedResult = 124)]
+        [TestCase("EEBBB", ExpectedResult = 125)]
+        [TestCase("EEEEBBBB", ExpectedResult = 205)]
+        [TestCase("EEEEBBBB", ExpectedResult = 205)]
+        [TestCase("STX", ExpectedResult = 45)]
+        [TestCase("STXSTX", ExpectedResult = 90)]
+        [TestCase("STXSTXT", ExpectedResult = 107)]
+        [TestCase("STXSTXTX", ExpectedResult = 124)]
         [TestCase("SSSZ", ExpectedResult = 65)]
         public int ShouldApplyPromotions(string skus)
         {
@@ -81,6 +81,3 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
-
-
-
