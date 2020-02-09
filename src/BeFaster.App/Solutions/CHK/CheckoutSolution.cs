@@ -49,11 +49,16 @@ namespace BeFaster.App.Solutions.CHK
                     else
                     {
                         var dict = new Dictionary<int, int>();
-                        foreach (var offer in pricing.Offer.Split(' '))
+
+                        if (IsCombinedOffer(pricing.Offer))
                         {
-                            if (IsCombinedOffer(offer))
 
+                        }
 
+                        else
+                        {
+                            foreach (var offer in pricing.Offer.Split(' '))
+                            {
                                 if (!string.IsNullOrEmpty(offer))
                                 {
                                     var qty = int.Parse(offer.Split('-')[0]);
@@ -61,9 +66,10 @@ namespace BeFaster.App.Solutions.CHK
                                     dict.Add(qty, price);
                                 }
 
-                        }
+                            }
 
-                        total += PriceWithOffer(item.Value, pricing.Price, dict);
+                            total += PriceWithOffer(item.Value, pricing.Price, dict);
+                        }
                     }
                 }
                 else
@@ -145,4 +151,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
