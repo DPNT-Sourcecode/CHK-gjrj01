@@ -49,15 +49,15 @@ namespace BeFaster.App.Solutions.CHK
                         total += item.Value * item.Value;
                     else
                     {
-                       //pricing.Offer.Split(' ').Select(x => x.Split('-').
+                        //pricing.Offer.Split(' ').Select(x => x.Split('-').
 
-                      pricing.Offer.Split(' ').Select(x => new { qty = })
+                        var d = pricing.Offer.Split(' ').Select(x => new { qty = 1, price = 1234 }).ToDictionary(o => o.qty, o => o.price);
 
-                        total += PriceWithOffer(item.Value, pricing.Price);
+                        //total += PriceWithOffer(item.Value, pricing.Price);
                     }
                 }
-
             }
+            return total;
         }
 
         private static int PriceWithOffer(int qty, int pricePerSingle, Dictionary<int, int> qtyPriceDiscount)
@@ -114,4 +114,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
