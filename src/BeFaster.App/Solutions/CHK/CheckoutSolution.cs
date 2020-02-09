@@ -52,12 +52,15 @@ namespace BeFaster.App.Solutions.CHK
                         {
                             var splits = pricing.Offer.Replace("(", "").Replace(")", "").Split('-');
                             var qty = int.Parse(splits[0]);
-                            var inOffer = splits[1].Split('|');
+                            var inOffer = splits[1].Split('|').Select(x => new { sku = x, price = pricings.Single(p => p.Sku == x)});
                             var price = int.Parse(splits[2]);
 
-                            if (basket.Where(x => inOffer.Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
+                            if (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
                             {
+                                for (int i = 0; i < qty; i++)
+                                {
 
+                                }
                             }
                         }
 
@@ -153,6 +156,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
