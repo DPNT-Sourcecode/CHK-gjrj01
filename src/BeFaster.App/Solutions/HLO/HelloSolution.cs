@@ -1,4 +1,5 @@
 ﻿using BeFaster.Runner.Exceptions;
+using System;
 
 namespace BeFaster.App.Solutions.HLO
 {
@@ -6,7 +7,12 @@ namespace BeFaster.App.Solutions.HLO
     {
         public static string Hello(string friendName)
         {
-            return "Hello, World!";
+            //if (string.IsNullOrEmpty(friendName))
+            //{
+            //    throw new ArgumentException("Invalid parameter", nameof(friendName));
+            //}
+
+            return $"Hello, {friendName}!";
         }
     }
 }

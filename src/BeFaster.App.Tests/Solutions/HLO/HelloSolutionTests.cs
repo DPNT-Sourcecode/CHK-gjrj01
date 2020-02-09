@@ -21,6 +21,13 @@ namespace BeFaster.App.Tests.Solutions.HLO
             Assert.IsFalse(string.IsNullOrEmpty(result));
         }
 
+        [TestCase("")]
+        [TestCase(null)]
+        public void ShouldThrowAnExceptionWhenFriendNameIsNullOrEmpty(string friendName)
+        {
+
+        }
+
 
 
         [TestCase("dave")]
