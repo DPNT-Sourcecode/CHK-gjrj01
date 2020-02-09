@@ -49,7 +49,11 @@ namespace BeFaster.App.Solutions.CHK
                         total += item.Value * item.Value;
                     else
                     {
+                       //pricing.Offer.Split(' ').Select(x => x.Split('-').
 
+                      pricing.Offer.Split(' ').Select(x => new { qty = })
+
+                        total += PriceWithOffer(item.Value, pricing.Price);
                     }
                 }
 
@@ -110,3 +114,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
