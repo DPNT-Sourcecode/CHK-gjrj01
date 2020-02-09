@@ -38,7 +38,7 @@ namespace BeFaster.App.Solutions.CHK
                 }
             }
 
-            throw new SolutionNotImplementedException();
+            return total;
         }
 
         private static IList<string> GetListFromBasket(string skus)
@@ -48,8 +48,9 @@ namespace BeFaster.App.Solutions.CHK
             // i.e. what separator? is it case sensitive a so on...
             // I'm assuming the PO replied saying the string is case sensitive and separator is , (comma)
 
-            return skus.Split(',').Select(x => skus.Trim().ToUpper()).ToList();
+            return skus.Split(',').Select(x => x.Trim().ToUpper()).ToList();
         }
     }
 }
+
 
