@@ -16,10 +16,6 @@ namespace BeFaster.App.Solutions.CHK
         {
             var basket = GetListFromBasket(skus);
 
-            // 2E get 1 B free
-            basket.ApplyPromotion("E", 2, "B", 1);
-            basket.ApplyPromotion("N", 3, "M", 1);
-            basket.ApplyPromotion("R", 3, "Q", 1);
 
             int total = 0;
 
@@ -29,6 +25,12 @@ namespace BeFaster.App.Solutions.CHK
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
                     var pricings = csv.GetRecords<Item>().ToList();
+
+                    // 2E get 1 B free
+                    basket.ApplyPromotion("E", 2, "B", 1);
+                    basket.ApplyPromotion("N", 3, "M", 1);
+                    basket.ApplyPromotion("R", 3, "Q", 1);
+
                     total = GetTotal(pricings, basket);
                 }
             }
@@ -59,6 +61,8 @@ namespace BeFaster.App.Solutions.CHK
                         total += PriceWithOffer(item.Value, pricing.Price, dict);
                     }
                 }
+                else
+                    return -1;
             }
             return total;
         }
