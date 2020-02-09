@@ -15,6 +15,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("1,B,C")]
         [TestCase("A-B+C")]
         [TestCase("ABCDa")]
+        [TestCase("a")]
         public void ShouldReturnMinus1_WhenAtLeastOneItemIsNotValid(string skus)
         {
             // When
@@ -44,7 +45,18 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("ABAA", ExpectedResult = 160)]
         [TestCase("AAABB", ExpectedResult = 175)]
         [TestCase("AAAAA", ExpectedResult = 200)]
+        [TestCase("AAAAABB", ExpectedResult = 245)]
         public int ShouldReturnDiscountedValue_IfThereIsASpecialOffer(string skus)
+        {
+            // When
+            var result = CheckoutSolution.ComputePrice(skus);
+
+            // Then
+            return result;
+        }
+
+        [TestCase("AAA", ExpectedResult = 130)]
+        public int ShouldApplyPromotions(string skus)
         {
             // When
             var result = CheckoutSolution.ComputePrice(skus);
@@ -54,6 +66,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
 
