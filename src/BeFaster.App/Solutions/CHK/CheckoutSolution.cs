@@ -55,7 +55,10 @@ namespace BeFaster.App.Solutions.CHK
                             var inOffer = splits[1].Split('|');
                             var price = int.Parse(splits[2]);
 
+                            if (basket.Where(x => inOffer.Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
+                            {
 
+                            }
                         }
 
                         else
@@ -150,6 +153,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
