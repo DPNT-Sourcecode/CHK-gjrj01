@@ -22,7 +22,7 @@ namespace BeFaster.App.Solutions.CHK
 
             int total = 0;
 
-            using (var reader = new StreamReader($"{Directory.GetCurrentDirectory()}/Solutions/CHK/Prices.csv"))
+            using (var reader = new StreamReader($"Solutions/CHK/Prices.csv"))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 var records = csv.GetRecords<Item>();
@@ -86,4 +86,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
