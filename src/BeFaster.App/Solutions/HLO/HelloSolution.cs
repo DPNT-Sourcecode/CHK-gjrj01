@@ -7,12 +7,13 @@ namespace BeFaster.App.Solutions.HLO
     {
         public static string Hello(string friendName)
         {
-            //if (string.IsNullOrEmpty(friendName))
-            //{
-            //    throw new ArgumentException("Invalid parameter", nameof(friendName));
-            //}
+            if (string.IsNullOrEmpty(friendName))
+            {
+                throw new ArgumentException("Invalid parameter", nameof(friendName));
+            }
 
             return $"Hello, {friendName}!";
         }
     }
 }
+

@@ -25,7 +25,8 @@ namespace BeFaster.App.Tests.Solutions.HLO
         [TestCase(null)]
         public void ShouldThrowAnExceptionWhenFriendNameIsNullOrEmpty(string friendName)
         {
-
+            // When - Then
+            Assert.Throws<ArgumentException>(() => HelloSolution.Hello(friendName), $"Invalid parameter\r\nParameter name: friendName");
         }
 
 
@@ -42,4 +43,5 @@ namespace BeFaster.App.Tests.Solutions.HLO
         }
     }
 }
+
 
