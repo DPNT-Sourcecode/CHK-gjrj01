@@ -63,7 +63,14 @@ namespace BeFaster.App.Solutions.CHK
                                 var index = 0;
                                 for (int i = 0; i < qty; i++)
                                 {
-                                    if (basket.ContainsKey(inOffer[index]))
+                                    if (basket.ContainsKey(inOffer[index].sku) && basket[inOffer[index].sku] > 0)
+                                    {
+                                        basket[inOffer[index].sku] = basket[inOffer[index].sku] - 1;
+                                    }
+                                    else
+                                    {
+                                        index++;
+                                    }
                                 }
                             }
                         }
@@ -160,3 +167,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
