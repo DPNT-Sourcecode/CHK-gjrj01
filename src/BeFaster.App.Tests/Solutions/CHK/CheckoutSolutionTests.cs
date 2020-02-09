@@ -39,6 +39,9 @@ namespace BeFaster.App.Tests.Solutions.CHK
 
 
         [TestCase("A,A,A", ExpectedResult = 130)]
+        [TestCase("A,A,A,A", ExpectedResult = 180)]
+        [TestCase("A,B,A,A", ExpectedResult = 160)]
+        [TestCase("A,A,A,B,B", ExpectedResult = 175)]
         public int ShouldReturnDiscountedValue_IfThereIsASpecialOffer(string skus)
         {
             // When
@@ -49,7 +52,3 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
-
-
-
-
