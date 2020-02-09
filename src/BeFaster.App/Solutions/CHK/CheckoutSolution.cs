@@ -81,8 +81,11 @@ namespace BeFaster.App.Solutions.CHK
 
             return dict;
         }
+
+        private static void ApplyPromotions(IDictionary<string, int> basket)
+        {
+            if (basket.Keys.Contains("E") && basket["E"])
+                basket.
+        }
     }
 }
-
-
-
