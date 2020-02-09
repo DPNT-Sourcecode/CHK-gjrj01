@@ -41,16 +41,23 @@ namespace BeFaster.App.Solutions.CHK
             return total;
         }
 
-        private static IList<string> GetListFromBasket(string skus)
+        private static IDictionary<string, int> GetListFromBasket(string skus)
         {
             // there are no requirements about how the list of skus is provided.
             // I would ask for the PO about the format of the string SKUs
             // i.e. what separator? is it case sensitive a so on...
             // I'm assuming the PO replied saying the string is case sensitive and separator is , (comma)
 
-            return skus.Split(',').Select(x => x.Trim().ToUpper()).ToList();
-        }
+            var dict = new Dictionary<string, int>();
+            var list = skus.Split(',').Select(x =>
+            {
+                var key = x.Trim().ToUpper();
+                dict.Add(key, dict.ContainsKey();
+
+
+            }
     }
-}
+    }
+
 
 
