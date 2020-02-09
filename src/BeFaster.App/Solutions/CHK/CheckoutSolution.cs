@@ -14,7 +14,7 @@ namespace BeFaster.App.Solutions.CHK
     {
         public static int ComputePrice(string skus)
         {
-            var basket = GetListFromBasket(skus);
+            var basket = GetBasket(skus);
 
 
             int total = 0;
@@ -86,7 +86,7 @@ namespace BeFaster.App.Solutions.CHK
             return combinedPrice;
         }
 
-        private static IDictionary<string, int> GetListFromBasket(string skus)
+        private static IDictionary<string, int> GetBasket(string skus)
         {
             // there are no requirements about how the list of skus is provided.
             // I would ask for the PO about the format of the string SKUs
@@ -108,6 +108,10 @@ namespace BeFaster.App.Solutions.CHK
 
             return dict;
         }
+        private static void ApplyPromotion(this IDictionary<string, int> basket, IList<Item> pricings)
+        {
+
+        }
 
         private static void ApplyPromotion(this IDictionary<string, int> basket, string inOffer, int qty, string freeItem, int qtyFreeItem)
         {
@@ -121,6 +125,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
