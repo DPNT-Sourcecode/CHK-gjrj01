@@ -28,21 +28,26 @@ namespace BeFaster.App.Solutions.CHK
             {
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    var pricing = csv.GetRecords<Item>().ToList();
-                    total = GetTotal(pricing, basket);
+                    var pricings = csv.GetRecords<Item>().ToList();
+                    total = GetTotal(pricings, basket);
                 }
             }
 
             return total;
         }
 
-        private static int GetTotal(List<Item> pricing, IDictionary<string, int> basket)
+        private static int GetTotal(List<Item> pricings, IDictionary<string, int> basket)
         {
             int total = 0;
             foreach (var item in basket)
             {
-                if (item.)
-                    total +=
+                if (pricings.Any(x => x.Sku == item.Key))
+                {
+                    var pricing = (pricing.Single(x => x.Sku == item.Key);
+                    if (string.IsNullOrEmpty.Offer))
+                        total += item.Value * pri;
+                }
+
             }
         }
 
@@ -100,7 +105,3 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
-
-
-
-
