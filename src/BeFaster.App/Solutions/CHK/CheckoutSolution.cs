@@ -46,13 +46,14 @@ namespace BeFaster.App.Solutions.CHK
                     var pricing = (pricings.Single(x => x.Sku == item.Key));
 
                     if (string.IsNullOrEmpty(pricing.Offer))
-                        total += item.Value * item.Value;
+                        total += item.Value * pricing.Price;
                     else
                     {
                         var dict = new Dictionary<int, int>();
                         foreach (var offer in pricing.Offer.Split(' '))
                         {
-                            dict.Add(int.Parse(offer.Split('-')[0]), int.Parse(offer.Split('-')[1]));
+                            if (!string.IsNullOrEmpty(offer))
+                                dict.Add(int.Parse(offer.Split('-')[0]), int.Parse(offer.Split('-')[1]));
                         }
 
                         total += PriceWithOffer(item.Value, pricing.Price, dict);
@@ -116,6 +117,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
