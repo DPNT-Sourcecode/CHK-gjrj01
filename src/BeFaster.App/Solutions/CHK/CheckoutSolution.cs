@@ -49,11 +49,13 @@ namespace BeFaster.App.Solutions.CHK
                         total += item.Value * item.Value;
                     else
                     {
-                        //pricing.Offer.Split(' ').Select(x => x.Split('-').
-                        var dict = new Dictionary<int, int>()
-                        var d = new { qty = pricing.Offer.Split('-')[0], price = pricing.Offer.Split('-')[1] }
+                        var dict = new Dictionary<int, int>();
+                        foreach (var offer in pricing.Offer.Split(' '))
+                        {
+                            dict.Add(int.Parse(offer.Split('-')[0]), int.Parse(offer.Split('-')[1]));
+                        }
 
-                        //total += PriceWithOffer(item.Value, pricing.Price);
+                        total += PriceWithOffer(item.Value, pricing.Price, dict);
                     }
                 }
             }
@@ -114,6 +116,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
