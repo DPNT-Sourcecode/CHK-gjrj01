@@ -65,7 +65,6 @@ namespace BeFaster.App.Tests.Solutions.CHK
 
         [TestCase("EEBBB", ExpectedResult = 125)]
         [TestCase("EEEEBBBB", ExpectedResult = 205)]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItem("Solutions/CHK/Prices.csv")]
         public int ShouldApplyPromotions(string skus)
         {
             // When
@@ -76,5 +75,6 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 

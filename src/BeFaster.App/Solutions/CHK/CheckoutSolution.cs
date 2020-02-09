@@ -26,16 +26,24 @@ namespace BeFaster.App.Solutions.CHK
             var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             using (var reader = new StreamReader($"{dir}\\Solutions\\CHK\\Prices.csv"))
             {
-                var s = reader.ReadToEnd();
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
                     var records = csv.GetRecords<Item>().ToList();
+                    total = GetTotal(records);
                 }
             }
 
             return total;
         }
 
+        private static int GetTotal(List<Item> records)
+        {
+            int total = 0;
+            foreach (var record in records)
+            {
+                GetTotal +=
+            }
+        }
 
         private static int PriceWithOffer(int qty, int pricePerSingle, Dictionary<int, int> qtyPriceDiscount)
         {
@@ -91,5 +99,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
