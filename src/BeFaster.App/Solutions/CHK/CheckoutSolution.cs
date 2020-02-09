@@ -44,14 +44,19 @@ namespace BeFaster.App.Solutions.CHK
         private static int PriceWithOffer(int qty, int pricePerSingle, Dictionary<int, int> qtyPriceDiscount)
         {
             var combinedPrice = 0;
-            foreach (var item in qtyPriceDiscount)
-            {
 
+            foreach (var item in qtyPriceDiscount.OrderByDescending(x => x.Key))
+            {
+                if (qty / item.Key > 0)
+                {
+                    qty -= item.Key;
+                    combinedPrice += item.Value;
+                }
             }
 
+            combinedPrice += qty * pricePerSingle;
 
-
-            return (qty / qtyOffer) * priceWithOffer + (qty % qtyOffer * pricePerSingle);
+            return combinedPrice;
         }
 
         private static IDictionary<string, int> GetListFromBasket(string skus)
@@ -78,4 +83,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
