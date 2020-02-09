@@ -108,9 +108,19 @@ namespace BeFaster.App.Solutions.CHK
 
             return dict;
         }
-        private static void ApplyPromotion(this IDictionary<string, int> basket, IList<Item> pricings)
+        private static void ApplyPromotions(this IDictionary<string, int> basket, IList<Item> pricings)
         {
-
+            foreach (var pricing in pricings)
+            {
+                if (!string.IsNullOrEmpty(pricing.Combined))
+                {
+                    foreach (var comb in pricing.Combined.Split(' '))
+                    {
+                        var values = comb.Split('-').Select(x => int.Parse(x)).ToList();
+                        basket.ApplyPromotion(pricing.Sku, values[0], values[1], values[2]);
+                    }
+                }
+            }
         }
 
         private static void ApplyPromotion(this IDictionary<string, int> basket, string inOffer, int qty, string freeItem, int qtyFreeItem)
@@ -125,9 +135,3 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
-
-
-
-
-
-
