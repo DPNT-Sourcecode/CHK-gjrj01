@@ -82,10 +82,11 @@ namespace BeFaster.App.Solutions.CHK
             return dict;
         }
 
-        private static void ApplyPromotions(IDictionary<string, int> basket)
+        private static void pplyPromotions(IDictionary<string, int> basket)
         {
-            if (basket.Keys.Contains("E") && basket["E"])
-                basket.
+            if (basket.ContainsKey("E") && basket.ContainsKey("B")))
+                basket["B"] = basket["B"] - basket["E"] % 2;
+
         }
     }
 }
