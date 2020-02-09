@@ -51,12 +51,15 @@ namespace BeFaster.App.Solutions.CHK
                         var dict = new Dictionary<int, int>();
                         foreach (var offer in pricing.Offer.Split(' '))
                         {
-                            if (!string.IsNullOrEmpty(offer))
-                            {
-                                var qty = int.Parse(offer.Split('-')[0]);
-                                var price = int.Parse(offer.Split('-')[1]);
-                                dict.Add(qty, price);
-                            }
+                            if (IsCombinedOffer(offer))
+
+
+                                if (!string.IsNullOrEmpty(offer))
+                                {
+                                    var qty = int.Parse(offer.Split('-')[0]);
+                                    var price = int.Parse(offer.Split('-')[1]);
+                                    dict.Add(qty, price);
+                                }
 
                         }
 
@@ -69,11 +72,14 @@ namespace BeFaster.App.Solutions.CHK
             return total;
         }
 
-
+        private static bool IsCombinedOffer(string offer)
+        {
+            return offer.Contains('(') && offer.Contains(')');
+        }
 
         private static int PriceWithOffer(int qty, int pricePerSingle, Dictionary<int, int> qtyPriceDiscount)
         {
-            var otherItemsPrice = 0;
+            var price = 0;
 
             foreach (var item in qtyPriceDiscount.OrderByDescending(x => x.Key))
             {
@@ -81,13 +87,13 @@ namespace BeFaster.App.Solutions.CHK
                 if (group > 0)
                 {
                     qty -= group * item.Key;
-                    otherItemsPrice += group * item.Value;
+                    price += group * item.Value;
                 }
             }
 
-            otherItemsPrice += qty * pricePerSingle;
+            price += qty * pricePerSingle;
 
-            return otherItemsPrice;
+            return price;
         }
 
         private static IDictionary<string, int> GetBasket(string skus)
@@ -116,9 +122,9 @@ namespace BeFaster.App.Solutions.CHK
         {
             foreach (var pricing in pricings)
             {
-                if (!string.IsNullOrEmpty(pricing.Combined))
+                if (!string.IsNullOrEmpty(pricing.OtherItemsOffer))
                 {
-                    foreach (var comb in pricing.Combined.Split(' '))
+                    foreach (var comb in pricing.OtherItemsOffer.Split(' '))
                     {
                         var values = comb.Split('-');
                         basket.ApplyPromotion(pricing.Sku, int.Parse(values[0]), values[1], int.Parse(values[2]));
@@ -139,3 +145,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
