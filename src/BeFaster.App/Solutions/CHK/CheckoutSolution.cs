@@ -18,11 +18,11 @@ namespace BeFaster.App.Solutions.CHK
                 switch (item.Key)
                 {
                     case "A":
-                        total += (item.Value / 3) * 130 + (item.Value % 3 * 50);
+                        total += ;
                         break;
 
                     case "B":
-                        total += item.Value * 30;
+                        total += (item.Value / 2) * 45 + (item.Value % 2 * 30);
                         break;
 
                     case "C":
@@ -39,6 +39,11 @@ namespace BeFaster.App.Solutions.CHK
             }
 
             return total;
+        }
+
+        private int PriceWithOffer(int qty, int priceWithOffer, int pricePerSingle)
+        {
+            return (item.Value / qty) * priceWithOffer + (item.Value % qty * pricePerSingle);
         }
 
         private static IDictionary<string, int> GetListFromBasket(string skus)
@@ -65,6 +70,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
