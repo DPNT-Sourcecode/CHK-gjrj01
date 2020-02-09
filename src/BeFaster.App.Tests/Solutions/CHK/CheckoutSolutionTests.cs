@@ -27,7 +27,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         // I'm assuming we could do just repeat the item in the string if the quantity is greater then 1
 
         [TestCase("D,B,C,A", ExpectedResult = 115)]
-        [TestCase("A,A", ExpectedResult = 150)]
+        [TestCase("A,A", ExpectedResult = 100)]
         public int ShouldReturnTotalWhenItemsAreAllValid(string skus)
         {
             // When
@@ -49,6 +49,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
 

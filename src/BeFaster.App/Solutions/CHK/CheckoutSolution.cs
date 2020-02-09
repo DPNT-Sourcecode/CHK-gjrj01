@@ -18,19 +18,19 @@ namespace BeFaster.App.Solutions.CHK
                 switch (item.Key)
                 {
                     case "A":
-                        total += 50;
+                        total += item.Value * 50;
                         break;
 
                     case "B":
-                        total += 30;
+                        total += item.Value * 30;
                         break;
 
                     case "C":
-                        total += 20;
+                        total += item.Value * 20;
                         break;
 
                     case "D":
-                        total += 15;
+                        total += item.Value * 15;
                         break;
 
                     default:
@@ -53,15 +53,19 @@ namespace BeFaster.App.Solutions.CHK
             foreach (var x in skus.Split(','))
             {
                 var key = x.Trim().ToUpper();
-                var value = dict.ContainsKey(key) ? dict[key] + 1 : 1;
+                var contains = dict.ContainsKey(key);
 
-                dict.Add(key, value);
+                if (contains)
+                    dict[key] = dict[key] + 1;
+                else
+                    dict.Add(key, 1);
             }
 
             return dict;
         }
     }
 }
+
 
 
 
