@@ -88,9 +88,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="Solutions\CHK\Prices.csv">
+    <Content Include="Solutions\CHK\Prices.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BeFaster.Runner\BeFaster.Runner.csproj">
