@@ -16,6 +16,7 @@ namespace BeFaster.App.Solutions.CHK
             items.ApplyPromotion("E", 2, "B", 1);
 
             items.ApplyPromotion("N", 3, "M", 1);
+            items.ApplyPromotion("R", 3, "Q", 1);
 
             int total = 0;
 
@@ -87,6 +88,13 @@ namespace BeFaster.App.Solutions.CHK
                         total += PriceWithOffer(item.Value, 50, new Dictionary<int, int> { { 5, 200 } });
                         break;
 
+                    case "Q":
+                        total += PriceWithOffer(item.Value, 30, new Dictionary<int, int> { { 3, 80 } });
+                        break;
+
+                    case "R":
+                        total += item.Value * 50;
+                        break;
 
                     default:
                         return -1;
