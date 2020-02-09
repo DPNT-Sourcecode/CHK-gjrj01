@@ -12,7 +12,7 @@ namespace BeFaster.App.Solutions.CHK
         {
             var items = GetListFromBasket(skus);
 
-            ApplyPromotions(items);
+            items.ApplyPromotion();
 
             int total = 0;
 
@@ -94,17 +94,18 @@ namespace BeFaster.App.Solutions.CHK
             return dict;
         }
 
-        private static void ApplyPromotions(IDictionary<string, int> basket)
+        private static void ApplyPromotions(this IDictionary<string, int> basket, string inOffer, int qty, string freeItem, int qtyFreeItem)
         {
-            if (basket.ContainsKey("E") && basket.ContainsKey("B"))
+            if (basket.ContainsKey(inOffer) && basket.ContainsKey(freeItem))
             {
-                basket["B"] = basket["B"] - basket["E"] / 2;
+                basket[freeItem] = basket[freeItem] - (qtyFreeItem * basket[inOffer] / qty);
 
-                if (basket["B"] < 0)
-                    basket["B"] = 0;
+                if (basket[freeItem] < 0)
+                    basket[freeItem] = 0;
             }
         }
     }
 }
+
 
 
