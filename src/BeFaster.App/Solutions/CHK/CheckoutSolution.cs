@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using BeFaster.Runner.Exceptions;
 using CsvHelper;
 
@@ -22,7 +23,8 @@ namespace BeFaster.App.Solutions.CHK
 
             int total = 0;
 
-            using (var reader = new StreamReader($"Solutions/CHK/Prices.csv"))
+            var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            using (var reader = new StreamReader($"{dir}\\Solutions\\CHK\\Prices.csv"))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 var records = csv.GetRecords<Item>();

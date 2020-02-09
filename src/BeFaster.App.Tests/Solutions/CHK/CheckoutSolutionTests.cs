@@ -71,10 +71,10 @@ namespace BeFaster.App.Tests.Solutions.CHK
             // When
             var result = CheckoutSolution.ComputePrice(skus);
 
-
             // Then
             return result;
         }
     }
 }
+
 
