@@ -50,7 +50,7 @@ namespace BeFaster.App.Solutions.CHK
                     {
                         if (IsCombinedOffer(pricing.Offer))
                         {
-                            var splits = pricing.Offer.Split('-');
+                            var splits = pricing.Offer.Replace("(", "").Replace(")", "").Split('-');
                             var qty = int.Parse(splits[0]);
                             var inOffer = splits[1].Split('|');
                             var price = int.Parse(splits[2]);
@@ -150,6 +150,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
