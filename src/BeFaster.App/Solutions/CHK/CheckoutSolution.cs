@@ -50,8 +50,8 @@ namespace BeFaster.App.Solutions.CHK
                     else
                     {
                         //pricing.Offer.Split(' ').Select(x => x.Split('-').
-
-                        var d = pricing.Offer.Split(' ').Select(x => new { qty = 1, price = 1234 }).ToDictionary(o => o.qty, o => o.price);
+                        var dict = new Dictionary<int, int>()
+                        var d = new { qty = pricing.Offer.Split('-')[0], price = pricing.Offer.Split('-')[1] }
 
                         //total += PriceWithOffer(item.Value, pricing.Price);
                     }
@@ -114,5 +114,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
