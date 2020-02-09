@@ -14,6 +14,7 @@ namespace BeFaster.App.Solutions.CHK
 
         public string Offer { get; set; }
 
-        public string Combined { get; set; }
+        public string OtherItemsOffer { get; set; }
     }
 }
+

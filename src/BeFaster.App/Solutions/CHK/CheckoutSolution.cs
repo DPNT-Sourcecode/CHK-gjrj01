@@ -52,7 +52,12 @@ namespace BeFaster.App.Solutions.CHK
                         foreach (var offer in pricing.Offer.Split(' '))
                         {
                             if (!string.IsNullOrEmpty(offer))
-                                dict.Add(int.Parse(offer.Split('-')[0]), int.Parse(offer.Split('-')[1]));
+                            {
+                                var qty = int.Parse(offer.Split('-')[0]);
+                                var price = int.Parse(offer.Split('-')[1]);
+                                dict.Add(qty, price);
+                            }
+
                         }
 
                         total += PriceWithOffer(item.Value, pricing.Price, dict);
@@ -64,9 +69,11 @@ namespace BeFaster.App.Solutions.CHK
             return total;
         }
 
+
+
         private static int PriceWithOffer(int qty, int pricePerSingle, Dictionary<int, int> qtyPriceDiscount)
         {
-            var combinedPrice = 0;
+            var otherItemsPrice = 0;
 
             foreach (var item in qtyPriceDiscount.OrderByDescending(x => x.Key))
             {
@@ -74,13 +81,13 @@ namespace BeFaster.App.Solutions.CHK
                 if (group > 0)
                 {
                     qty -= group * item.Key;
-                    combinedPrice += group * item.Value;
+                    otherItemsPrice += group * item.Value;
                 }
             }
 
-            combinedPrice += qty * pricePerSingle;
+            otherItemsPrice += qty * pricePerSingle;
 
-            return combinedPrice;
+            return otherItemsPrice;
         }
 
         private static IDictionary<string, int> GetBasket(string skus)
