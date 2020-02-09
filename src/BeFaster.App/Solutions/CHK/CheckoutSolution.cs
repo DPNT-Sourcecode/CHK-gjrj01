@@ -12,7 +12,8 @@ namespace BeFaster.App.Solutions.CHK
         {
             var items = GetListFromBasket(skus);
 
-            items.ApplyPromotion();
+            // 2E get 1 B free
+            items.ApplyPromotion("E", 2, "B", 1);
 
             int total = 0;
 
@@ -42,6 +43,14 @@ namespace BeFaster.App.Solutions.CHK
 
                     case "F":
                         total += PriceWithOffer(item.Value, 10, new Dictionary<int, int> { { 3, 20 } });
+                        break;
+
+                    case "G":
+                        total += item.Value * 20;
+                        break;
+
+                    case "H":
+                        total += PriceWithOffer(item.Value, 10, new Dictionary<int, int> { { 5, 45 }, { 10, 80 } });
                         break;
 
                     default:
@@ -94,7 +103,7 @@ namespace BeFaster.App.Solutions.CHK
             return dict;
         }
 
-        private static void ApplyPromotions(this IDictionary<string, int> basket, string inOffer, int qty, string freeItem, int qtyFreeItem)
+        private static void ApplyPromotion(this IDictionary<string, int> basket, string inOffer, int qty, string freeItem, int qtyFreeItem)
         {
             if (basket.ContainsKey(inOffer) && basket.ContainsKey(freeItem))
             {
@@ -106,6 +115,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
