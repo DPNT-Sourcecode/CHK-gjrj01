@@ -18,7 +18,7 @@ namespace BeFaster.App.Solutions.CHK
                 switch (item.Key)
                 {
                     case "A":
-                        total += item.Value * 50;
+                        total += (item.Value / 3) * 130 + (item.Value % 3 * 50);
                         break;
 
                     case "B":
@@ -65,6 +65,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
