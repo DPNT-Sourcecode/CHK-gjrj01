@@ -61,11 +61,14 @@ namespace BeFaster.App.Solutions.CHK
                             if (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
                             {
                                 var index = 0;
-                                for (int i = 0; i < qty; i++)
+                                var i = 0;
+
+                                while (i < qty)
                                 {
                                     if (basket.ContainsKey(inOffer[index].sku) && basket[inOffer[index].sku] > 0)
                                     {
                                         basket[inOffer[index].sku] = basket[inOffer[index].sku] - 1;
+                                        i++;
                                     }
                                     else
                                     {
@@ -167,4 +170,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
