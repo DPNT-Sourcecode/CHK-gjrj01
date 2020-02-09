@@ -28,14 +28,14 @@ namespace BeFaster.App.Solutions.CHK
 
                     basket.ApplyPromotions(pricings);
 
-                    total = GetTotal(pricings, basket);
+                    total = GetTotal(pricings, basket.ToDictionary());
                 }
             }
 
             return total;
         }
 
-        private static int GetTotal(List<Item> pricings, IDictionary<string, int> basket)
+        private static int GetTotal(List<Item> pricings, Dictionary<string, int> basket)
         {
             int total = 0;
             foreach (var item in basket)
@@ -58,7 +58,7 @@ namespace BeFaster.App.Solutions.CHK
 
                             var price = int.Parse(splits[2]);
 
-                            while (x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
+                            while (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
                             {
                                 var index = 0;
                                 var i = 0;
@@ -172,6 +172,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
