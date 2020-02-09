@@ -12,17 +12,27 @@ namespace BeFaster.App.Tests.Solutions.CHK
     public class CheckoutSolutionTests
     {
         [TestCase("A, B, E")]
-        public void ShouldReturnMinus1_WhenAtLeastOneItemIsNotValid()
+        [TestCase("1, B, C")]
+        [TestCase("A- B+C")]
+        public void ShouldReturnMinus1_WhenAtLeastOneItemIsNotValid(string skus)
         {
-            //Given
-            var skus =;
-
             // When
             var result = CheckoutSolution.ComputePrice(skus);
 
             //Then
             Assert.AreEqual(-1, result);
         }
+
+        [TestCase("D,B,C,A", ExpectedResult = 115)]
+        public int ShouldReturnTotalWhenItemsAreAllValid(string skus)
+        {
+            // When
+            var result = CheckoutSolution.ComputePrice(skus);
+
+            // Then
+            return result;
+        }
     }
 }
+
 
