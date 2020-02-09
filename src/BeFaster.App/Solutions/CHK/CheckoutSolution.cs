@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using BeFaster.Runner.Exceptions;
+using CsvHelper;
 
 namespace BeFaster.App.Solutions.CHK
 {
@@ -19,14 +22,15 @@ namespace BeFaster.App.Solutions.CHK
 
             int total = 0;
 
+            using (var reader = new StreamReader($"{Directory.GetCurrentDirectory()}/Solutions/CHK/Prices.csv"))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var records = csv.GetRecords<Item>();
+            }
 
             return total;
         }
 
-        private void LoadPrices()
-        {
-
-        }
 
         private static int PriceWithOffer(int qty, int pricePerSingle, Dictionary<int, int> qtyPriceDiscount)
         {
@@ -82,3 +86,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
