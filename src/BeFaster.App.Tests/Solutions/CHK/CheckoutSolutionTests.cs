@@ -12,8 +12,9 @@ namespace BeFaster.App.Tests.Solutions.CHK
     public class CheckoutSolutionTests
     {
         [TestCase("A, B, E")]
-        [TestCase("1, B, C")]
-        [TestCase("A- B+C")]
+        [TestCase("1,B,C")]
+        [TestCase("A-B+C")]
+        [TestCase("a")]
         public void ShouldReturnMinus1_WhenAtLeastOneItemIsNotValid(string skus)
         {
             // When
@@ -26,8 +27,8 @@ namespace BeFaster.App.Tests.Solutions.CHK
         // I would again ask the PO how we are supposed to add the quantity to the sku string.
         // I'm assuming we could do just repeat the item in the string if the quantity is greater then 1
 
-        [TestCase("D,B,C,A", ExpectedResult = 115)]
-        [TestCase("A,A", ExpectedResult = 100)]
+        [TestCase("DBCA", ExpectedResult = 115)]
+        [TestCase("AA", ExpectedResult = 100)]
         public int ShouldReturnTotalWhenItemsAreAllValid(string skus)
         {
             // When
@@ -38,10 +39,10 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
 
-        [TestCase("A,A,A", ExpectedResult = 130)]
-        [TestCase("A,A,A,A", ExpectedResult = 180)]
-        [TestCase("A,B,A,A", ExpectedResult = 160)]
-        [TestCase("A,A,A,B,B", ExpectedResult = 175)]
+        [TestCase("AAA", ExpectedResult = 130)]
+        [TestCase("AAAA", ExpectedResult = 180)]
+        [TestCase("ABAA", ExpectedResult = 160)]
+        [TestCase("AAABB", ExpectedResult = 175)]
         public int ShouldReturnDiscountedValue_IfThereIsASpecialOffer(string skus)
         {
             // When
@@ -52,3 +53,4 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+

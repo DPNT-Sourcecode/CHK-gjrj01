@@ -55,9 +55,9 @@ namespace BeFaster.App.Solutions.CHK
 
             var dict = new Dictionary<string, int>();
 
-            foreach (var x in skus.Split(','))
+            foreach (var x in skus)
             {
-                var key = x.Trim().ToUpper();
+                var key = x.ToString();
                 var contains = dict.ContainsKey(key);
 
                 if (contains)
