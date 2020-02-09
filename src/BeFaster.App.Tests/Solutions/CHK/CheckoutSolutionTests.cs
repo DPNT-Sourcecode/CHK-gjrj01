@@ -67,6 +67,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("EEEEBBBB", ExpectedResult = 205)]
         [TestCase("EEEEBBBB", ExpectedResult = 205)]
         [TestCase("STX", ExpectedResult = 45)]
+        [TestCase("STX", ExpectedResult = 90)]
         public int ShouldApplyPromotions(string skus)
         {
             // When
@@ -77,4 +78,5 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
