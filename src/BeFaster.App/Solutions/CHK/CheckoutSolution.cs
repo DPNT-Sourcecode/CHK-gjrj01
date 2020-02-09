@@ -41,8 +41,16 @@ namespace BeFaster.App.Solutions.CHK
             return total;
         }
 
-        private static int PriceWithOffer(int qty, int qtyOffer, int priceWithOffer, int pricePerSingle)
+        private static int PriceWithOffer(int qty, int pricePerSingle, Dictionary<int, int> qtyPriceDiscount)
         {
+            var combinedPrice = 0;
+            foreach (var item in qtyPriceDiscount)
+            {
+
+            }
+
+
+
             return (qty / qtyOffer) * priceWithOffer + (qty % qtyOffer * pricePerSingle);
         }
 
@@ -70,3 +78,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
