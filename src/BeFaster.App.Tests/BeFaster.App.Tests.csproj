@@ -54,7 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="..\BeFaster.App\Solutions\CHK\Prices.csv">
+    <Content Include="..\BeFaster.App\Solutions\CHK\Prices.csv" >
+      <Link>Solutions\CHK\Prices.csv</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
