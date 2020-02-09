@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using BeFaster.App.Solutions.HLO;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,14 @@ namespace BeFaster.App.Tests.Solutions.HLO
     public class HelloSolutionTests
     {
 
-        [Test]
-        public void Test()
+        [TestCase("dave")]
+        [TestCase("mike")]
+        public void ShouldReturnANonEmptyString(string friendName)
         {
+            // When
+            var result = HelloSolution.Hello(friendName);
 
+            Assert.IsFalse(string.IsNullOrEmpty(result));
         }
     }
 }
