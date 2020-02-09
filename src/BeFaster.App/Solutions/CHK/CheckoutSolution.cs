@@ -28,7 +28,7 @@ namespace BeFaster.App.Solutions.CHK
 
                     basket.ApplyPromotions(pricings);
 
-                    total = GetTotal(pricings, basket.ToDictionary());
+                    total = GetTotal(pricings, basket);
                 }
             }
 
@@ -38,8 +38,10 @@ namespace BeFaster.App.Solutions.CHK
         private static int GetTotal(List<Item> pricings, Dictionary<string, int> basket)
         {
             int total = 0;
-            foreach (var item in basket)
+            for (int i = 0; i < basket.Count; i++)
             {
+                var item = basket[i];
+
                 if (pricings.Any(x => x.Sku == item.Key))
                 {
                     var pricing = (pricings.Single(x => x.Sku == item.Key));
@@ -123,7 +125,7 @@ namespace BeFaster.App.Solutions.CHK
             return price;
         }
 
-        private static IDictionary<string, int> GetBasket(string skus)
+        private static Dictionary<string, int> GetBasket(string skus)
         {
             // there are no requirements about how the list of skus is provided.
             // I would ask for the PO about the format of the string SKUs
@@ -172,6 +174,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
