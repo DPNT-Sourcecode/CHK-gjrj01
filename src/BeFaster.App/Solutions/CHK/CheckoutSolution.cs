@@ -54,10 +54,11 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var item in qtyPriceDiscount.OrderByDescending(x => x.Key))
             {
-                if (qty / item.Key > 0)
+                var group = qty / item.Key;
+                if (group > 0)
                 {
-                    qty -= item.Key;
-                    combinedPrice += item.Value;
+                    qty -= group * item.Key;
+                    combinedPrice += group * item.Value;
                 }
             }
 
@@ -101,3 +102,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
