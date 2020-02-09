@@ -58,7 +58,7 @@ namespace BeFaster.App.Solutions.CHK
 
                             var price = int.Parse(splits[2]);
 
-                            if (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
+                            while (x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
                             {
                                 var index = 0;
                                 var i = 0;
@@ -76,7 +76,7 @@ namespace BeFaster.App.Solutions.CHK
                                     }
                                 }
 
-                                total += item.Value * price;
+                                total += price;
                             }
                         }
 
@@ -172,6 +172,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
