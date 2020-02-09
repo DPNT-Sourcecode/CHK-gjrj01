@@ -17,4 +17,3 @@ namespace BeFaster.App.Solutions.CHK
         public string OtherItemsOffer { get; set; }
     }
 }
-
