@@ -6,7 +6,15 @@ namespace BeFaster.App.Solutions.CHK
     {
         public static int ComputePrice(string skus)
         {
+            var items = GetListFromBasket()
+
+            switch (switch_on)
+            {
+                default:
+            }
+
             throw new SolutionNotImplementedException();
         }
     }
 }
+
