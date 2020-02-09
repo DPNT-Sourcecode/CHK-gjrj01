@@ -15,8 +15,6 @@ namespace BeFaster.App.Solutions.CHK
         public static int ComputePrice(string skus)
         {
             var basket = GetBasket(skus);
-
-
             int total = 0;
 
             var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -35,11 +33,12 @@ namespace BeFaster.App.Solutions.CHK
             return total;
         }
 
-        private static int GetTotal(List<Item> pricings, Dictionary<string, int> basket)
+        private static int GetTotal(List<Item> pricings, SortedList<string, int> basket)
         {
             int total = 0;
-            foreach (var item in basket)
+            for (int i = 0; i < basket.Count; i++)
             {
+                var item = basket.ElementAt(i);
                 if (pricings.Any(x => x.Sku == item.Key))
                 {
                     var pricing = (pricings.Single(x => x.Sku == item.Key));
@@ -61,14 +60,14 @@ namespace BeFaster.App.Solutions.CHK
                             while (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
                             {
                                 var index = 0;
-                                var i = 0;
+                                var j = 0;
 
-                                while (i < qty)
+                                while (j < qty)
                                 {
                                     if (basket.ContainsKey(inOffer[index].sku) && basket[inOffer[index].sku] > 0)
                                     {
                                         basket[inOffer[index].sku] = basket[inOffer[index].sku] - 1;
-                                        i++;
+                                        j++;
                                     }
                                     else
                                     {
@@ -130,7 +129,7 @@ namespace BeFaster.App.Solutions.CHK
             // i.e. what separator? is it case sensitive a so on...
             // I'm assuming the PO replied saying the string is case sensitive and separator is , (comma)
 
-            var dict = new Dictionary<string, int>();
+            var dict = new SortedList<string, int>();
 
             foreach (var x in skus)
             {
@@ -145,7 +144,7 @@ namespace BeFaster.App.Solutions.CHK
 
             return dict;
         }
-        private static void ApplyPromotions(this IDictionary<string, int> basket, IList<Item> pricings)
+        private static void ApplyPromotions(this SortedList<string, int> basket, IList<Item> pricings)
         {
             foreach (var pricing in pricings)
             {
@@ -160,7 +159,7 @@ namespace BeFaster.App.Solutions.CHK
             }
         }
 
-        private static void ApplyPromotion(this IDictionary<string, int> basket, string inOffer, int qty, string freeItem, int qtyFreeItem)
+        private static void ApplyPromotion(this SortedList<string, int> basket, string inOffer, int qty, string freeItem, int qtyFreeItem)
         {
             if (basket.ContainsKey(inOffer) && basket.ContainsKey(freeItem))
             {
@@ -172,6 +171,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
