@@ -15,7 +15,7 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var item in items)
             {
-                switch (item)
+                switch (item.Key)
                 {
                     case "A":
                         total += 50;
@@ -49,15 +49,19 @@ namespace BeFaster.App.Solutions.CHK
             // I'm assuming the PO replied saying the string is case sensitive and separator is , (comma)
 
             var dict = new Dictionary<string, int>();
-            var list = skus.Split(',').Select(x =>
+
+            foreach (var x in skus.Split(','))
             {
                 var key = x.Trim().ToUpper();
-                dict.Add(key, dict.ContainsKey();
+                var value = dict.ContainsKey(key) ? dict[key] + 1 : 1;
 
-
+                dict.Add(key, value);
             }
+
+            return dict;
+        }
     }
-    }
+}
 
 
 
