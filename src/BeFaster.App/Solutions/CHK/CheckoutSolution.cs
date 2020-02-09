@@ -75,6 +75,8 @@ namespace BeFaster.App.Solutions.CHK
                                         index++;
                                     }
                                 }
+
+                                total += item.Value * price;
                             }
                         }
 
@@ -170,5 +172,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
