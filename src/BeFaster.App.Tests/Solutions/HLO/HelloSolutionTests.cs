@@ -13,7 +13,6 @@ namespace BeFaster.App.Tests.Solutions.HLO
     {
 
         [TestCase("dave")]
-        [TestCase("mike")]
         public void ShouldReturnANonEmptyString(string friendName)
         {
             // When
@@ -21,5 +20,19 @@ namespace BeFaster.App.Tests.Solutions.HLO
 
             Assert.IsFalse(string.IsNullOrEmpty(result));
         }
+
+
+
+        [TestCase("dave")]
+        [TestCase("mike")]
+        public void ShouldReturnCorrectOutput(string friendName)
+        {
+            // When
+            var result = HelloSolution.Hello(friendName);
+
+            // Then
+            Assert.AreEqual($"Hello, {friendName}!", result);
+        }
     }
 }
+
