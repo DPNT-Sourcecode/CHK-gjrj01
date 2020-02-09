@@ -60,30 +60,34 @@ namespace BeFaster.App.Solutions.CHK
 
                                 if (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() < qty)
                                     total += item.Value * pricing.Price;
-
-                                while (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
+                                else
                                 {
-                                    var index = 0;
-                                    var j = 0;
-
-                                    while (j < qty)
+                                    while (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
                                     {
-                                        if (basket.ContainsKey(inOffer[index].sku) && basket[inOffer[index].sku] > 0)
+                                        var index = 0;
+                                        var j = 0;
+
+                                        while (j < qty)
                                         {
-                                            basket[inOffer[index].sku] = basket[inOffer[index].sku] - 1;
-                                            j++;
+                                            if (basket.ContainsKey(inOffer[index].sku) && basket[inOffer[index].sku] > 0)
+                                            {
+                                                basket[inOffer[index].sku] = basket[inOffer[index].sku] - 1;
+                                                j++;
+                                            }
+                                            else
+                                            {
+                                                index++;
+                                            }
                                         }
-                                        else
-                                        {
-                                            index++;
-                                        }
+
+                                        total += price;
                                     }
 
-                                    total += price;
+                                    if (basket[item.Key] > 0)
+                                        total += basket[item.Key] * pricing.Price;
                                 }
 
-                                if (basket[item.Key] > 0)
-                                    total += basket[item.Key] * pricing.Price;
+
                             }
 
                             else
