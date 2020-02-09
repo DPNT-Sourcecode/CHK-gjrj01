@@ -27,7 +27,7 @@ namespace BeFaster.App.Solutions.CHK
             using (var reader = new StreamReader($"{dir}\\Solutions\\CHK\\Prices.csv"))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                var records = csv.GetRecords<Item>();
+                var records = csv.GetRecords<Item>().ToList();
             }
 
             return total;
@@ -88,3 +88,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
