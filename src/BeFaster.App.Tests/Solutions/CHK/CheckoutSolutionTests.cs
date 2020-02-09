@@ -14,7 +14,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("A, B, E")]
         [TestCase("1,B,C")]
         [TestCase("A-B+C")]
-        [TestCase("a")]
+        [TestCase("ABCDa")]
         public void ShouldReturnMinus1_WhenAtLeastOneItemIsNotValid(string skus)
         {
             // When
@@ -53,4 +53,5 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
