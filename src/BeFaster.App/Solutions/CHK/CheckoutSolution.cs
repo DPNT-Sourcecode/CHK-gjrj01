@@ -26,10 +26,7 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     var pricings = csv.GetRecords<Item>().ToList();
 
-                    // 2E get 1 B free
-                    basket.ApplyPromotion("E", 2, "B", 1);
-                    basket.ApplyPromotion("N", 3, "M", 1);
-                    basket.ApplyPromotion("R", 3, "Q", 1);
+                    basket.ApplyPromotions(pricings);
 
                     total = GetTotal(pricings, basket);
                 }
@@ -116,8 +113,8 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     foreach (var comb in pricing.Combined.Split(' '))
                     {
-                        var values = comb.Split('-').Select(x => int.Parse(x)).ToList();
-                        basket.ApplyPromotion(pricing.Sku, values[0], values[1], values[2]);
+                        var values = comb.Split('-');
+                        basket.ApplyPromotion(pricing.Sku, int.Parse(values[0]), values[1], int.Parse(values[2]));
                     }
                 }
             }
