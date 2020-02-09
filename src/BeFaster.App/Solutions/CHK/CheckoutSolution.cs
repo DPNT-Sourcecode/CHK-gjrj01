@@ -20,10 +20,24 @@ namespace BeFaster.App.Solutions.CHK
                     case "A":
                         total += 50;
                         break;
-                    default:
+
+                    case "B":
+                        total += 30;
                         break;
+
+                    case "C":
+                        total += 20;
+                        break;
+
+                    case "D":
+                        total += 15;
+                        break;
+
+                    default:
+                        return -1;
                 }
             }
+
             throw new SolutionNotImplementedException();
         }
 
@@ -34,7 +48,8 @@ namespace BeFaster.App.Solutions.CHK
             // i.e. what separator? is it case sensitive a so on...
             // I'm assuming the PO replied saying the string is case sensitive and separator is , (comma)
 
-            return skus.Split(',').Select(x => skus.Trim().ToUpper()s).ToList();
+            return skus.Split(',').Select(x => skus.Trim().ToUpper()).ToList();
         }
     }
 }
+
