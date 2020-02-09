@@ -43,9 +43,14 @@ namespace BeFaster.App.Solutions.CHK
             {
                 if (pricings.Any(x => x.Sku == item.Key))
                 {
-                    var pricing = (pricing.Single(x => x.Sku == item.Key);
-                    if (string.IsNullOrEmpty.Offer))
-                        total += item.Value * pri;
+                    var pricing = (pricings.Single(x => x.Sku == item.Key));
+
+                    if (string.IsNullOrEmpty(pricing.Offer))
+                        total += item.Value * item.Value;
+                    else
+                    {
+
+                    }
                 }
 
             }
