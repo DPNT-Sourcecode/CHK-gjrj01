@@ -18,11 +18,11 @@ namespace BeFaster.App.Solutions.CHK
                 switch (item.Key)
                 {
                     case "A":
-                        total += PriceWithOffer(item.Value, 3, 130, 50);
+                        total += PriceWithOffer(item.Value, 50, new Dictionary<int, int> { { 5, 200 }, { 3, 130 } });
                         break;
 
                     case "B":
-                        total += PriceWithOffer(item.Value, 2, 45, 30);
+                        total += PriceWithOffer(item.Value, 30, new Dictionary<int, int> { { 2, 45 } });
                         break;
 
                     case "C":
@@ -83,5 +83,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
