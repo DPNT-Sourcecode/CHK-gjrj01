@@ -40,6 +40,10 @@ namespace BeFaster.App.Solutions.CHK
                         total += item.Value * 40;
                         break;
 
+                    case "F":
+                        total += PriceWithOffer(item.Value, 10, new Dictionary<int, int> { { 3, 20 } });
+                        break;
+
                     default:
                         return -1;
                 }
@@ -102,4 +106,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 

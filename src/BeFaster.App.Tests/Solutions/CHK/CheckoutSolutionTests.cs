@@ -40,15 +40,18 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
 
 
-        //[TestCase("AAA", ExpectedResult = 130)]
-        //[TestCase("AAAA", ExpectedResult = 180)]
-        //[TestCase("ABAA", ExpectedResult = 160)]
-        //[TestCase("AAABB", ExpectedResult = 175)]
-        //[TestCase("AAAAA", ExpectedResult = 200)]
-        //[TestCase("AAAAABB", ExpectedResult = 245)]
+        [TestCase("AAA", ExpectedResult = 130)]
+        [TestCase("AAAA", ExpectedResult = 180)]
+        [TestCase("ABAA", ExpectedResult = 160)]
+        [TestCase("AAABB", ExpectedResult = 175)]
+        [TestCase("AAAAA", ExpectedResult = 200)]
+        [TestCase("AAAAABB", ExpectedResult = 245)]
         [TestCase("AAAAAAAAAA", ExpectedResult = 400)]
         [TestCase("BBBB", ExpectedResult = 90)]
         [TestCase("ABCDECBAABCABBAAAEEAA", ExpectedResult = 665)]
+        [TestCase("FFF", ExpectedResult = 20)]
+        [TestCase("FFFFFF", ExpectedResult = 40)]
+        [TestCase("FFFAFFF", ExpectedResult = 90)]
         public int ShouldReturnDiscountedValue_IfThereIsASpecialOffer(string skus)
         {
             // When
@@ -70,6 +73,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
 
