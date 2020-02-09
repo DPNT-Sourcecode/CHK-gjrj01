@@ -25,9 +25,12 @@ namespace BeFaster.App.Solutions.CHK
 
             var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             using (var reader = new StreamReader($"{dir}\\Solutions\\CHK\\Prices.csv"))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                var records = csv.GetRecords<Item>().ToList();
+                var s = reader.ReadToEnd();
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    var records = csv.GetRecords<Item>().ToList();
+                }
             }
 
             return total;
@@ -88,4 +91,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
