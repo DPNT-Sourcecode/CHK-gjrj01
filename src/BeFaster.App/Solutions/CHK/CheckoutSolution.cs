@@ -57,6 +57,15 @@ namespace BeFaster.App.Solutions.CHK
 
                         else
                         {
+                            var a = pricing.Offer.Split(' ').Select(x =>
+                            new
+                            {
+                                qty = int.Parse(x.Split('-')[0]),
+                                price = int.Parse(x.Split('-')[1])
+                            }).ToDictionary(k => k.qty, v => v.price);
+
+
+
                             foreach (var offer in pricing.Offer.Split(' '))
                             {
                                 if (!string.IsNullOrEmpty(offer))
@@ -151,5 +160,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
