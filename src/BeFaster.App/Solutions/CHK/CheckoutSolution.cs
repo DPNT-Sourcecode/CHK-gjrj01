@@ -39,61 +39,62 @@ namespace BeFaster.App.Solutions.CHK
             for (int i = 0; i < basket.Count; i++)
             {
                 var item = basket.ElementAt(i);
-                if (pricings.Any(x => x.Sku == item.Key))
-                {
-                    var pricing = (pricings.Single(x => x.Sku == item.Key));
-
-                    if (string.IsNullOrEmpty(pricing.Offer))
-                        total += item.Value * pricing.Price;
-                    else
+                if (item.Value > 0)
+                    if (pricings.Any(x => x.Sku == item.Key))
                     {
-                        if (IsCombinedOffer(pricing.Offer))
-                        {
-                            var splits = pricing.Offer.Replace("(", "").Replace(")", "").Split('-');
-                            var qty = int.Parse(splits[0]);
-                            var inOffer = splits[1].Split('|')
-                                .Select(x => new { sku = x, price = pricings.Single(p => p.Sku == x).Price })
-                                .OrderByDescending(x => x.price).ToList();
+                        var pricing = (pricings.Single(x => x.Sku == item.Key));
 
-                            var price = int.Parse(splits[2]);
-
-                            while (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
-                            {
-                                var index = 0;
-                                var j = 0;
-
-                                while (j < qty)
-                                {
-                                    if (basket.ContainsKey(inOffer[index].sku) && basket[inOffer[index].sku] > 0)
-                                    {
-                                        basket[inOffer[index].sku] = basket[inOffer[index].sku] - 1;
-                                        j++;
-                                    }
-                                    else
-                                    {
-                                        index++;
-                                    }
-                                }
-
-                                total += price;
-                            }
-                        }
-
+                        if (string.IsNullOrEmpty(pricing.Offer))
+                            total += item.Value * pricing.Price;
                         else
                         {
-                            var dict = pricing.Offer.Split(' ').Select(x =>
-                            new
+                            if (IsCombinedOffer(pricing.Offer))
                             {
-                                qty = int.Parse(x.Split('-')[0]),
-                                price = int.Parse(x.Split('-')[1])
-                            }).ToDictionary(k => k.qty, v => v.price);
+                                var splits = pricing.Offer.Replace("(", "").Replace(")", "").Split('-');
+                                var qty = int.Parse(splits[0]);
+                                var inOffer = splits[1].Split('|')
+                                    .Select(x => new { sku = x, price = pricings.Single(p => p.Sku == x).Price })
+                                    .OrderByDescending(x => x.price).ToList();
 
-                            total += PriceWithOffer(item.Value, pricing.Price, dict);
+                                var price = int.Parse(splits[2]);
+
+                                while (basket.Where(x => inOffer.Select(s => s.sku).Contains(x.Key)).Select(x => x.Value).Sum() >= qty)
+                                {
+                                    var index = 0;
+                                    var j = 0;
+
+                                    while (j < qty)
+                                    {
+                                        if (basket.ContainsKey(inOffer[index].sku) && basket[inOffer[index].sku] > 0)
+                                        {
+                                            basket[inOffer[index].sku] = basket[inOffer[index].sku] - 1;
+                                            j++;
+                                        }
+                                        else
+                                        {
+                                            index++;
+                                        }
+                                    }
+
+                                    total += price;
+                                }
+                            }
+
+                            else
+                            {
+                                var dict = pricing.Offer.Split(' ').Select(x =>
+                                new
+                                {
+                                    qty = int.Parse(x.Split('-')[0]),
+                                    price = int.Parse(x.Split('-')[1])
+                                }).ToDictionary(k => k.qty, v => v.price);
+
+                                total += PriceWithOffer(item.Value, pricing.Price, dict);
+                            }
                         }
                     }
-                }
-                else
-                    return -1;
+                    else
+                        return -1;
             }
             return total;
         }
