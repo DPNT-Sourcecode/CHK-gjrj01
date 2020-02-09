@@ -93,7 +93,7 @@ namespace BeFaster.App.Solutions.CHK
         {
             if (basket.ContainsKey("E") && basket.ContainsKey("B"))
             {
-                basket["B"] = basket["B"] - basket["E"] % 2;
+                basket["B"] = basket["B"] - basket["E"] / 2;
 
                 if (basket["B"] < 0)
                     basket["B"] = 0;
